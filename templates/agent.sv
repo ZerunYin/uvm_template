@@ -33,6 +33,14 @@ function {{name}}::new(string name = "", uvm_component parent = null);
 endfunction : new
 
 // function phases
+function void build_phase(uvm_phase phase);
+    super.build_phase(phase);
+endfunction : build_phase
+
+function void connect_phase(uvm_phase phase);
+    super.connect_phase(phase);
+endfunction : connect_phase
+
 {%for key, value in cfg.phase_cfg.func_phases.items()%}
     {%if value%}
 function void {{name}}::{{key}}_phase(uvm_phase phase);
