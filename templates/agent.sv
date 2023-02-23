@@ -10,15 +10,17 @@ class {{name}} extends {{base}};
 
     extern function new(string name = "", uvm_component parent = null);
 
-    {%for item in cfg.func_phases%}
-        {%if item[1]%}
-    extern function void {{item[0]}}_phase(uvm_phase phase);
+    extern function void build_phase(uvm_phase phase);
+    extern function void connect_phase(uvm_phase phase);
+    {%for key, value in cfg.phase_cfg.func_phases.items()%}
+        {%if value%}
+    extern function void {{key}}_phase(uvm_phase phase);
         {%endif%}
-    {% endfor %}
+    {%endfor%}
 
-    {%for item in cfg.task_phases%}
-        {%if item[1]%}
-    extern task {{item[0]}}_phase(uvm_phase phase);
+    {%for key, value in cfg.phase_cfg.task_phases.items()%}
+        {%if value%}
+    extern task {{key}}_phase(uvm_phase phase);
         {%endif%}
     {%endfor%}
 
@@ -31,21 +33,21 @@ function {{name}}::new(string name = "", uvm_component parent = null);
 endfunction : new
 
 // function phases
-{%for item in cfg.func_phases%}
-    {%if item[1]%}
-function void {{name}}::{{item[0]}}_phase(uvm_phase phase);
-    super.{{item[0]}}_phase(phase);
-endfunction : {{item[0]}}_phase
+{%for key, value in cfg.phase_cfg.func_phases.items()%}
+    {%if value%}
+function void {{name}}::{{key}}_phase(uvm_phase phase);
+    super.{{key}}_phase(phase);
+endfunction : {{key}}_phase
 
     {%endif%}
-{% endfor %}
+{%endfor%}
 
 // task phases
-{%for item in cfg.task_phases%}
-    {%if item[1]%}
-task {{name}}::{{item[0]}}_phase(uvm_phase phase);
-    super.{{item[0]}}_phase(phase);
-endtask : {{item[0]}}_phase
+{%for key, value in cfg.phase_cfg.task_phases.items()%}
+    {%if value%}
+task {{name}}::{{key}}_phase(uvm_phase phase);
+    super.{{key}}_phase(phase);
+endtask : {{key}}_phase
 
     {%endif%}
 {%endfor%}
