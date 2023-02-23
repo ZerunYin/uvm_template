@@ -16,11 +16,13 @@ class ComponentConfig(object):
         self.driver_name = "%s_%s" % (self.name, "driver")
         self.monitor_name = "%s_%s" % (self.name, "monitor")
         self.sequencer_name = "%s_%s" % (self.name, "sequencer")
+        self.if_name = "%s_%s" % (self.name, "if")
         self.env_base = "uvm_env"
         self.agent_base = "uvm_agent"
         self.driver_base = "uvm_driver"
         self.monitor_base = "uvm_monitor"
         self.sequencer_base = "uvm_sequencer"
+
 
 
 class AgentConfig(ComponentConfig):

@@ -4,6 +4,8 @@
 class {{name}} extends {{base}};
     `uvm_component_utils({{name}})
 
+    {{cfg.agent_name}} m_agt[];
+
     extern function new(string name = "", uvm_component parent = null);
 
     {%for key, value in cfg.phase_cfg.func_phases.items()%}
