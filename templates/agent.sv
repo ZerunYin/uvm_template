@@ -4,6 +4,10 @@
 class {{name}} extends {{base}};
     `uvm_component_utils({{name}})
 
+    {{cfg.driver_name}} m_drv;
+    {{cfg.monitor_name}} m_mon;
+    {{cfg.sequencer_name}} m_sqr;
+
     extern function new(string name = "", uvm_component parent = null);
 
     {%for item in cfg.func_phases%}

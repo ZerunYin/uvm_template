@@ -8,16 +8,12 @@ env = Environment(
     lstrip_blocks=True
 )
 
-# tpls_cfg = {
-#     "env": True,
-#     "agent": True,
-#     "driver": True,
-#     "monitor": True,
-#     "sequencer": True
-# }
-
 tpls_cfg = {
+    "env": True,
     "agent": True,
+    "driver": True,
+    "monitor": True,
+    "sequencer": True
 }
 
 cfg = ComponentConfig("msg")
