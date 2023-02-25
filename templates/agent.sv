@@ -1,5 +1,5 @@
-`ifndef {{name.upper()}}_SV
-`define {{name.upper()}}_SV
+`ifndef {{name.upper()}}_SVH
+`define {{name.upper()}}_SVH
 
 class {{name}} extends {{base}};
     `uvm_component_utils({{name}})
@@ -24,13 +24,10 @@ class {{name}} extends {{base}};
 
 endclass : {{name}}
 
-// ================================================================================================================== //
-
 function {{name}}::new(string name = "", uvm_component parent = null);
     super.new(name, parent);
 endfunction : new
 
-// function phases
 function void build_phase(uvm_phase phase);
     super.build_phase(phase);
     if(is_active == UVM_ACTIVE) begin
@@ -53,7 +50,6 @@ endfunction : {{key}}_phase
     {%endif%}
 {%endfor%}
 
-// task phases
 {%for key, value in cfg.phase_cfg.task_phases.items()%}
     {%if value[1]%}
 task {{name}}::{{key}}_phase(uvm_phase phase);
@@ -63,4 +59,4 @@ endtask : {{key}}_phase
     {%endif%}
 {%endfor%}
 
-`endif // {{name.upper()}}_SV
+`endif // {{name.upper()}}_SVH

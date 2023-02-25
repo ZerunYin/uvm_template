@@ -19,7 +19,7 @@ def gen_files(name, tpls_cfg):
     with open("%s/%s.f" % (name, name), "w") as fh:
         for key, value in tpls_cfg.items():
             if value[0]:
-                fh.writelines("%s_%s.sv\n" % (name, key))
+                fh.writelines("%s_%s.svh\n" % (name, key))
 
     # generate package file
     with open("%s/%s_pkg.sv" % (name, name), "w") as fh:
@@ -29,13 +29,13 @@ def gen_files(name, tpls_cfg):
         fh.write("\n")
         for key, value in tpls_cfg.items():
             if value[0]:
-                fh.writelines("    `include \"%s_%s.sv\"\n" % (name, key))
+                fh.writelines("    `include \"%s_%s.svh\"\n" % (name, key))
         fh.write("endpackage")
 
     for key, value in tpls_cfg.items():
         tpl = env.get_template("%s.sv" % key)
         cfg = value[1]
-        with open("%s/%s_%s.sv" % (name, name, key), "w") as fh:
+        with open("%s/%s_%s.svh" % (name, name, key), "w") as fh:
             fh.write(tpl.render(name=getattr(cfg, "%s_name" % key), base=getattr(cfg, "%s_base" % key), cfg=cfg))
 
 
